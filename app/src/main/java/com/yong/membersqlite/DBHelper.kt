@@ -14,7 +14,7 @@ class DBHelper(
 ) :
     SQLiteOpenHelper(context, name, factory, version) {
 
-    //멤버테이블 정의 (앱이 설치된 다음 DBHelper() 딱 한번만 실행된다)
+    //멤버테이블 정의 (앱이 설치된 다음 딱 한 번만 실행된다.)
     override fun onCreate(db: SQLiteDatabase?) {
         if (db != null) {
             db.execSQL(
@@ -51,7 +51,6 @@ class DBHelper(
         } finally {
             db.close()
         }
-
         return flag
     }
 
@@ -69,8 +68,9 @@ class DBHelper(
         } catch (e: java.lang.Exception) {
             Log.e("membersqlite", "selectCheckID 실패 $e.stackTraceToString()")
             flag = false
+        } finally {
+            db.close()
         }
-        db.close()
         return flag
     }
 
@@ -92,8 +92,9 @@ class DBHelper(
         } catch (e: java.lang.Exception) {
             Log.e("membersqlite", "selectLogin $id $password 실패 $e.stackTraceToString()")
             flag = false
+        } finally {
+            db.close()
         }
-        db.close()
         return flag
     }
 
@@ -119,9 +120,9 @@ class DBHelper(
             }
         } catch (e: java.lang.Exception) {
             Log.e("membersqlite", "select $id 실패 $e.stackTraceToString()")
+        } finally {
+            db.close()
         }
-        db.close()
-
         return member
     }
 
@@ -139,7 +140,6 @@ class DBHelper(
         } finally {
             db.close()
         }
-
         return flag
     }
 
@@ -155,9 +155,10 @@ class DBHelper(
             } catch (e: java.lang.Exception) {
                 Log.e("membersqlite", "update 실패 ${e.stackTraceToString()}")
                 false
+            }  finally {
+                db.close()
             }
         }
-        db.close()
         return flag
     }
 
