@@ -37,14 +37,14 @@ class CustomAdapter(val memberList: MutableList<Member>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val binding = holder.binding
         val member = memberList.get(position)
-        binding.tvID.append(member.id)
-        binding.tvName.append(member.name)
-        binding.tvIPWD.append(member.password)
-        binding.tvgender.append(member.gender)
-        binding.tvIPhone.append(member.phone)
-        binding.tvIEmail.append(member.email)
-        binding.tvIAddress.append(member.address)
-        binding.tvILevel.append(member.level)
+        binding.tvID.text = "아이디 : ${member.id}"
+        binding.tvName.text = "이름 : ${member.name}"
+        binding.tvIPWD.text = "비밀번호 : ${member.password}"
+        binding.tvgender.text = "성별 : ${member.gender}"
+        binding.tvIPhone.text = "전화번호 : ${member.phone}"
+        binding.tvIEmail.text = "이메일 : ${member.email}"
+        binding.tvIAddress.text = "주소 : ${member.address}"
+        binding.tvILevel.text = "직급 : ${member.level}"
     }
 
     override fun getItemCount(): Int {
